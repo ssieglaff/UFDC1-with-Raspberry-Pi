@@ -3,7 +3,7 @@ The library included in this repo allows a Raspberry Pi 3 to interface with the 
 ### Physical Connections
 The diagram shown here describes the connections required to allow the UFDC-1 to communicate with the Raspberry Pi via SPI.
 
-![UFDC-1 Connection Diagram for Raspi 3](UFDC-1 Raspi 3 Connection Diagram.png)
+![UFDC-1 Connection Diagram for Raspi 3](https://github.com/ssieglaff/UFDC1-with-Raspberry-Pi/blob/main/UFDC-1%20Raspi%203%20Connection%20Diagram.png)
 
 There are a few things to note. If you are only measuring a single signal (for instance, a single square wave output by some sensor), there is no need to include connections for the Frequency to Measure 2 signal shown. However, as per the [datasheet](https://www.mmselectronics.co.uk/images/datasheets/sensors/UTI/UFDC_notes.pdf) each used signal must be fed into both of the respective FX and ST pins, not just one or the other.
 The TXD and SDA pins must be tied to ground, or else the UFDC-1 will assume these signals are used to communicate and the SPI bus won't function properly.
