@@ -1,8 +1,6 @@
 import time
 import spidev
-#import RPi.GPIO as GPIO
 
-spi = spidev.SpiDev()
 dummy = 0xFF
 
 class UFDC1:
@@ -58,7 +56,6 @@ class UFDC1:
 
 
 if __name__ == "__main__":
-	#GPIO.setmode(GPIO.BCM)
 	ufdc = UFDC1(0)
 	ufdc.set_accuracy(7)
 	ufdc.set_measuring_mode(0)
