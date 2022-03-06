@@ -1,6 +1,8 @@
 import time
 import spidev
+#import RPi.GPIO as GPIO
 
+spi = spidev.SpiDev()
 dummy = 0xFF
 
 class UFDC1:
@@ -48,14 +50,21 @@ class UFDC1:
 		return int(i, 2) + int(f, 2) / 2.**len(f)
 	def start_measurement(self):
 		self.spi.writebytes2([9])
+	def complete_measurement(self):
+		self.start_measurement()
+		while not self.is_measurement_done():
+			pass
+		return self.get_result_decimal()
 	def get_modulation_rotor_gradations(self):
 		buffer = self.spi.xfer([11, self.dummy, self.dummy])
 		return buffer[2]
 	def set_modulation_rotor_gradations(self, gradations):
 		self.spi.writebytes2([12, gradations])
-
+	def close(self):
+		self.spi.close()
 
 if __name__ == "__main__":
+	#GPIO.setmode(GPIO.BCM)
 	ufdc = UFDC1(0)
 	ufdc.set_accuracy(7)
 	ufdc.set_measuring_mode(0)
